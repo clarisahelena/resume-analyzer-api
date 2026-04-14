@@ -57,6 +57,7 @@ Required variables:
 | `GROQ_API_KEY` | Your Groq API key (required) | - |
 | `PORT` | Server port | `8080` |
 | `MAX_FILE_SIZE` | Max PDF upload size in bytes | `5242880` (5MB) |
+| `CORS_ORIGIN` | Frontend URL for CORS (production) | `localhost:3000` only |
 
 ## Local Development
 
@@ -171,7 +172,15 @@ Analyzes a CV against a job description.
 
 ## CORS Configuration
 
-The API is configured to accept requests from `http://localhost:3000` by default. Modify the CORS settings in [main.go](main.go) if your frontend runs on a different origin.
+The API allows requests from `http://localhost:3000` by default for local development.
+
+For production, set the `CORS_ORIGIN` environment variable to your frontend URL:
+
+```env
+CORS_ORIGIN=https://your-frontend.vercel.app
+```
+
+Multiple origins are supported — localhost is always included for development.
 
 ## File Requirements
 
